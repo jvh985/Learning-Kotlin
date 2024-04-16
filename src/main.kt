@@ -6,4 +6,15 @@ fun main() {
     val name = "random person"
 
     println("Hello $name")
+
+    val condition = true
+
+    if (condition) {
+        println("correct")
+    }
+    else {
+        println("error")
+    }
 }
+
+
