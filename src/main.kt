@@ -26,7 +26,7 @@ fun main() {
     var teams = 10  // mutable type
     val total = 25.60.toBigDecimal()
 
-    val shipping: BigDecimal
+    val shipping: String
 
 
     // clubs ++  error: val is read-only
@@ -59,7 +59,7 @@ fun main() {
         println("condition set to true")
     }
 
-   shipping = calculateShipping(total)
+   shipping = "%.2f".format(calculateShipping(total))
 
     println("Shipping cost is: $${shipping}")
 
@@ -68,7 +68,7 @@ fun main() {
 fun calculateShipping(total:BigDecimal): BigDecimal {
     val shippingCost:BigDecimal
 
-    if(total < 35.0.toBigDecimal()) {
+    if(total < 35.00.toBigDecimal()) {
         shippingCost = 5.00.toBigDecimal()
     }
     else shippingCost = 0.00.toBigDecimal()
