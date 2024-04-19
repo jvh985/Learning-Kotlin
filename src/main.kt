@@ -15,8 +15,8 @@ import java.math.BigDecimal
     ⌃ G and ⌃ ⌘ G :will select the symbol at caret / select all symbols with the same name
 
 */
-// Getting used to the syntax of Kotlin
 
+// Getting used to the syntax of Kotlin and Intellij IDE
 
 fun main() {
     println("hello world")
@@ -25,8 +25,10 @@ fun main() {
     val clubs = 10
     var teams = 10  // mutable type
     val total = 25.60.toBigDecimal()
+    val myArray = intArrayOf(90, 2, 2, 4, 15, 82, 42, 4, 5, 22, 1)
+    val stringArray = arrayOf("dog", "cat", "bird", "hippo")
 
-    val shipping: String
+
 
 
     // clubs ++  error: val is read-only
@@ -59,9 +61,30 @@ fun main() {
         println("condition set to true")
     }
 
-   shipping = "%.2f".format(calculateShipping(total))
+    val shipping: String = "%.2f".format(calculateShipping(total))
 
     println("Shipping cost is: $${shipping}")
+
+    println("The original unsorted list is: ${myArray.joinToString()}")
+    mergeSort(myArray)
+    println("The sorted list now reads: ${myArray.joinToString()}")
+
+    println(stringArray.joinToString(" - "))
+
+    println("\n--------------------------------------\n")
+
+    println(stringArray.joinToString("\n"))
+
+    println("\n--------------------------------------\n")
+
+    for (element in stringArray){
+        println(element)
+    }
+
+    println("\n--------------------------------------\n")
+
+    stringArray.forEach { println(it) }
+
 
 }
 
@@ -76,3 +99,50 @@ fun calculateShipping(total:BigDecimal): BigDecimal {
     return shippingCost
 }
 
+// sorting algorithms
+
+fun mergeSort (myArray: IntArray) {
+    if (myArray.size <= 1) return
+
+    // logic to split the array
+    val middleOfArray = myArray.size / 2
+    val leftArray = myArray.copyOfRange(0, middleOfArray)
+    val rightArray = myArray.copyOfRange(middleOfArray, myArray.size)
+
+    // recursion to get to 1 element in each half, then sort with merge()
+    mergeSort(leftArray)
+    mergeSort(rightArray)
+
+    // will sort each half of the array and then final pass will merge both together
+    merge(myArray, leftArray, rightArray)
+}
+
+fun merge(array: IntArray, leftArray: IntArray, rightArray: IntArray) {
+    var i = 0
+    var j = 0
+    var k = 0
+
+    while (i < leftArray.size && j < rightArray.size){
+        if (leftArray[i] <= rightArray[j]){
+            array[k] = leftArray[i]
+            i++
+        }
+        else {
+            array[k] = rightArray[j]
+            j++
+        }
+        k++
+    }
+
+    while (i < leftArray.size) {
+        array[k] = leftArray[i]
+        i++
+        k++
+    }
+
+    while (j < rightArray.size) {
+        array[k] = rightArray[j]
+        j++
+        k++
+    }
+}
