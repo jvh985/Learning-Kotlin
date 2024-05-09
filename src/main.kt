@@ -1,4 +1,5 @@
 import java.math.BigDecimal
+import PriorityQueue
 
 /*  Keyboard shortcuts:
     ⌃ ␣ :brings up completion items
@@ -27,9 +28,6 @@ fun main() {
     val total = 25.60.toBigDecimal()
     val myArray = intArrayOf(90, 2, 2, 4, 15, 82, 42, 4, 5, 22, 1)
     val stringArray = arrayOf("dog", "cat", "bird", "hippo")
-
-
-
 
     // clubs ++  error: val is read-only
 
@@ -84,6 +82,17 @@ fun main() {
     println("\n--------------------------------------\n")
 
     stringArray.forEach { println(it) }
+
+    println("\n--------------------------------------\n")
+
+    val priorityQueue = PriorityQueue()
+    priorityQueue.insert(55)
+    priorityQueue.insert(13)
+    priorityQueue.insert(41)
+    priorityQueue.insert(2)
+    priorityQueue.insert(80)
+
+    println("Max element: ${priorityQueue.extractMax()}")
 
 
 }
