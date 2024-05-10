@@ -1,5 +1,5 @@
 import java.math.BigDecimal
-import PriorityQueue
+import kotlin.system.measureTimeMillis
 
 /*  Keyboard shortcuts:
     ⌃ ␣ :brings up completion items
@@ -94,6 +94,26 @@ fun main() {
 
     println("Max element: ${priorityQueue.extractMax()}")
 
+    println("\n--------------------------------------\n")
+
+
+    val jumbledArray = intArrayOf(22, 11, 44, 66, 1, 3, 65, 11, 101, 3, 11, 67, 11, 81)
+
+    val mergeTime = measureTimeMillis {
+        mergeSort(jumbledArray)
+    }
+    println("mergeSort sorted values: ${jumbledArray.joinToString()}")
+    println("Time for mergeSort: $mergeTime milliseconds")
+
+    println("\n--------------------------------------\n")
+
+    val unsortedArray = intArrayOf(1, 222, 33, 4, 67, 33, 34, 51, 111, 33, 65, 1, 29, 343)
+
+    val quickTime = measureTimeMillis {
+        quickSort(unsortedArray)
+    }
+    println("quickSort sorted values: ${unsortedArray.joinToString()}")
+    println("Time for quickSort: $quickTime milliseconds")
 
 }
 
@@ -106,52 +126,4 @@ fun calculateShipping(total:BigDecimal): BigDecimal {
     else shippingCost = 0.00.toBigDecimal()
 
     return shippingCost
-}
-
-// sorting algorithms
-
-fun mergeSort (myArray: IntArray) {
-    if (myArray.size <= 1) return
-
-    // logic to split the array
-    val middleOfArray = myArray.size / 2
-    val leftArray = myArray.copyOfRange(0, middleOfArray)
-    val rightArray = myArray.copyOfRange(middleOfArray, myArray.size)
-
-    // recursion to get to 1 element in each half, then sort with merge()
-    mergeSort(leftArray)
-    mergeSort(rightArray)
-
-    // will sort each half of the array and then final pass will merge both together
-    merge(myArray, leftArray, rightArray)
-}
-
-fun merge(array: IntArray, leftArray: IntArray, rightArray: IntArray) {
-    var i = 0
-    var j = 0
-    var k = 0
-
-    while (i < leftArray.size && j < rightArray.size){
-        if (leftArray[i] <= rightArray[j]){
-            array[k] = leftArray[i]
-            i++
-        }
-        else {
-            array[k] = rightArray[j]
-            j++
-        }
-        k++
-    }
-
-    while (i < leftArray.size) {
-        array[k] = leftArray[i]
-        i++
-        k++
-    }
-
-    while (j < rightArray.size) {
-        array[k] = rightArray[j]
-        j++
-        k++
-    }
 }
