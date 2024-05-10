@@ -2,6 +2,7 @@ import kotlin.random.Random
 
 // sorting algorithms
 
+// Standard mergeSort
 fun mergeSort (myArray: IntArray) {
     if (myArray.size <= 1) return
 
@@ -48,10 +49,15 @@ fun merge(array: IntArray, leftArray: IntArray, rightArray: IntArray) {
     }
 }
 
+/*  Quicksort that's modified to choose a random pivot index and use a
+    three-way partition to reduce the occurrences of worst case time
+    complexity
+ */
 fun quickSort(arr: IntArray) {
     if (arr.size < 2) {
         //println("Array size < 2, returning")
-        return // Base case: An empty array or an array with 1 element are already sorted
+        // Base case: An empty array or an array with 1 element are already sorted
+        return
     }
     //println("Sorting array: ${arr.joinToString()}")
     modifiedQuickSort(arr, 0, arr.size - 1)

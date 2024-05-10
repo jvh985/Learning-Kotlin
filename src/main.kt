@@ -1,4 +1,5 @@
 import java.math.BigDecimal
+import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
 /*  Keyboard shortcuts:
@@ -96,24 +97,41 @@ fun main() {
 
     println("\n--------------------------------------\n")
 
+    val size = 100000
+    val random = Random.Default
 
     val jumbledArray = intArrayOf(22, 11, 44, 66, 1, 3, 65, 11, 101, 3, 11, 67, 11, 81)
+    val mergeRandomArray = IntArray(size) {random.nextInt()}
 
     val mergeTime = measureTimeMillis {
         mergeSort(jumbledArray)
     }
+
     println("mergeSort sorted values: ${jumbledArray.joinToString()}")
     println("Time for mergeSort: $mergeTime milliseconds")
+
+    val mergeTime2 = measureTimeMillis {
+        mergeSort(mergeRandomArray)
+    }
+
+    println("Time for larger mergeSort: $mergeTime2 milliseconds")
 
     println("\n--------------------------------------\n")
 
     val unsortedArray = intArrayOf(1, 222, 33, 4, 67, 33, 34, 51, 111, 33, 65, 1, 29, 343)
+    val quickRandomArray = IntArray(size) {random.nextInt()}
 
     val quickTime = measureTimeMillis {
         quickSort(unsortedArray)
     }
+
     println("quickSort sorted values: ${unsortedArray.joinToString()}")
     println("Time for quickSort: $quickTime milliseconds")
+
+    val quickTime2 = measureTimeMillis {
+        quickSort(quickRandomArray)
+    }
+    println("Time for larger quickSort: $quickTime2 milliseconds")
 
 }
 

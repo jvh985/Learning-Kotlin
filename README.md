@@ -24,5 +24,5 @@ After this your 'Main' branch will show in Intellij version control
 
 ---
 
-# Project 1
+
 
